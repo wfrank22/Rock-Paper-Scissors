@@ -1,30 +1,34 @@
-//select rock, paper, or scissors randomly
+//select rock, paper, or scissors randomly for computer
 function computerPlay(){
     let selector = Math.floor(Math.random() * 3) + 1;
     if (selector === 1){
-        return 'Rock';
+        return 'rock';
     }
     else if (selector === 2){
-        return 'Paper';
+        return 'paper';
     }
     else {
-        return 'Scissors';
+        return 'scissors';
     }
 }
 
 //compare player selection with computer selection and announce winner or tie
 function playRound(playerSelection, computerSelection){
     playerSelection = prompt('Pick Rock, Paper, or Scissors')
-        playerSelection = playerSelection.toLowerCase();
-        if(playerSelection !== 'rock' || 'paper' || 'scissors'){
-            playerSelection = prompt('Wrong input. Pick Rock, Paper, or Scissors')
-            playerSelection = playerSelection.toLowerCase();
-        }
     //convert to lower case so strings can be compared
+    playerSelection = playerSelection.toLowerCase();
 
+    while(playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors'){
+        console.log('Incorrect entry. Try again.')
+        console.log(playerSelection, computerSelection);
+        playerSelection = prompt('Pick Rock, Paper, or Scissors')
+        playerSelection = playerSelection.toLowerCase();
+    }
 
-    computerSelection = computerSelection.toLowerCase();
+    //convert to lower case so strings can be compared
+    //computerSelection = computerSelection.toLowerCase();
 
+    //compare player & computer choice
     if (playerSelection === computerSelection){
         return 'Tie! Play again.';
     }
@@ -74,11 +78,12 @@ function capitalize(a){
     return a;
 }
 
+//5 rounds and select winner
 function game(){
     for (let i = 0; i < 5; i++){
         let roundWinner = playRound(playerSelection, computerSelection);
         console.log(roundWinner)
-        computerSelection = computerPlay();
+        computerSelection = computerPlay(); //new computer choice
         //console.log(playerCount, computerCount);
     }
     if (playerCount > computerCount){
@@ -92,4 +97,4 @@ function game(){
     }
 }
 
-console.log(game(playRound(playerSelection, computerSelection)));
+console.log(game(playerSelection, computerSelection));
