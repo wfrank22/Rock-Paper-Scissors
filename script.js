@@ -20,13 +20,9 @@ function playRound(playerSelection, computerSelection){
 
     while(playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors'){
         console.log('Incorrect entry. Try again.')
-        console.log(playerSelection, computerSelection);
         playerSelection = prompt('Pick Rock, Paper, or Scissors')
         playerSelection = playerSelection.toLowerCase();
     }
-
-    //convert to lower case so strings can be compared
-    //computerSelection = computerSelection.toLowerCase();
 
     //compare player & computer choice
     if (playerSelection === computerSelection){
@@ -80,11 +76,11 @@ function capitalize(a){
 
 //5 rounds and select winner
 function game(){
-    for (let i = 0; i < 5; i++){
+    console.log('Best of 5 starts now!')
+    while(playerCount < 3 && computerCount < 3){
         let roundWinner = playRound(playerSelection, computerSelection);
         console.log(roundWinner)
         computerSelection = computerPlay(); //new computer choice
-        //console.log(playerCount, computerCount);
     }
     if (playerCount > computerCount){
         return 'You\'ve won the game! :)';
