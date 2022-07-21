@@ -76,12 +76,12 @@ function capitalize(a){
 
 //5 rounds and select winner
 function game(){
-    console.log('Best of 5 starts now!')
-    while(playerCount < 3 && computerCount < 3){
+    //console.log('Best of 5 starts now!')
+    //while(playerCount < 3 && computerCount < 3){
         let roundWinner = playRound(playerSelection, computerSelection);
         console.log(roundWinner)
         computerSelection = computerPlay(); //new computer choice
-    }
+    //}
     if (playerCount > computerCount){
         return 'You\'ve won the game! :)';
     }
