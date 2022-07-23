@@ -12,17 +12,23 @@ function computerPlay(){
     }
 }
 
+
 //compare player selection with computer selection and announce winner or tie
 function playRound(playerSelection, computerSelection){
-    playerSelection = prompt('Pick Rock, Paper, or Scissors')
+    //playerSelection = prompt('Pick Rock, Paper, or Scissors')
     //convert to lower case so strings can be compared
-    playerSelection = playerSelection.toLowerCase();
+    //playerSelection = playerSelection.toLowerCase();
 
-    while(playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors'){
-        console.log('Incorrect entry. Try again.')
-        playerSelection = prompt('Pick Rock, Paper, or Scissors')
-        playerSelection = playerSelection.toLowerCase();
-    }
+
+
+    // while(playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors'){
+    //     console.log('Incorrect entry. Try again.')
+    //     playerSelection = prompt('Pick Rock, Paper, or Scissors')
+    //     playerSelection = playerSelection.toLowerCase();
+    // }
+
+    
+
 
     //compare player & computer choice
     if (playerSelection === computerSelection){
@@ -76,11 +82,15 @@ function capitalize(a){
 
 //5 rounds and select winner
 function game(){
-    //console.log('Best of 5 starts now!')
+    let roundWinner;
+    console.log('Best of 5 starts now!')
     //while(playerCount < 3 && computerCount < 3){
-        let roundWinner = playRound(playerSelection, computerSelection);
-        console.log(roundWinner)
-        computerSelection = computerPlay(); //new computer choice
+        document.addEventListener('click', function(e){ //player selects choice
+            playerSelection = e.target.id;
+            roundWinner = playRound(playerSelection, computerSelection);
+            console.log(roundWinner)
+            computerSelection = computerPlay(); //new computer choice
+        })
     //}
     if (playerCount > computerCount){
         return 'You\'ve won the game! :)';
@@ -92,5 +102,5 @@ function game(){
         return 'Tie game!';
     }
 }
-
+//playerSelection should change to function that is called in game() below
 console.log(game(playerSelection, computerSelection));
