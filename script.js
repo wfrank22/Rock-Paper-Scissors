@@ -15,21 +15,6 @@ function computerPlay(){
 
 //compare player selection with computer selection and announce winner or tie
 function playRound(playerSelection, computerSelection){
-    //playerSelection = prompt('Pick Rock, Paper, or Scissors')
-    //convert to lower case so strings can be compared
-    //playerSelection = playerSelection.toLowerCase();
-
-
-
-    // while(playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors'){
-    //     console.log('Incorrect entry. Try again.')
-    //     playerSelection = prompt('Pick Rock, Paper, or Scissors')
-    //     playerSelection = playerSelection.toLowerCase();
-    // }
-
-    
-
-
     //compare player & computer choice
     if (playerSelection === computerSelection){
         return 'Tie! Play again.';
@@ -80,27 +65,70 @@ function capitalize(a){
     return a;
 }
 
-//5 rounds and select winner
-function game(){
-    let roundWinner;
-    console.log('Best of 5 starts now!')
-    //while(playerCount < 3 && computerCount < 3){
-        document.addEventListener('click', function(e){ //player selects choice
-            playerSelection = e.target.id;
-            roundWinner = playRound(playerSelection, computerSelection);
-            console.log(roundWinner)
-            computerSelection = computerPlay(); //new computer choice
-        })
-    //}
-    if (playerCount > computerCount){
+console.log(computerSelection);
+
+document.addEventListener('click', function(e){
+
+    playerSelection = e.target.id;
+    computerSelection = computerPlay();
+    if(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper'){
+        if(playerCount == 0 && computerCount == 0 && playerSelection != computerSelection){
+            console.log('Best of 5 starts now!');
+            console.log(computerSelection);
+        }
+        playRound(playerSelection, computerSelection);
+    }
+    if(playerCount == 5){
+        playerCount = 0;
+        computerCount = 0;
         return 'You\'ve won the game! :)';
     }
-    else if(computerCount > playerCount){
+    else if(computerCount == 5){
+        playerCount = 0;
+        computerCount = 0;
         return 'You\'ve lost the game. :(';
     }
-    else{
-        return 'Tie game!';
-    }
-}
-//playerSelection should change to function that is called in game() below
-console.log(game(playerSelection, computerSelection));
+})
+
+
+
+
+// function game(){
+//     let roundWinner = playRound(playerSelection, computerSelection)
+//     console.log(roundWinner);
+//     if(playerCount == 0 && computerCount == 0){
+//         console.log('Best of 5 starts now!');
+//     }
+//     else if(playerCount == 3){
+//         playerCount = 0;
+//         computerCount = 0;
+//         return 'You\'ve won the game! :)';
+//     }
+//     else if(computerCount == 3){
+//         playerCount = 0;
+//         computerCount = 0;
+//         return 'You\'ve lost the game. :(';
+//     }
+// }
+
+// console.log(game(selectPlayerChoice(), computerSelection));
+
+//5 rounds and select winner
+// function game(){
+//     console.log('Best of 5 starts now!')
+//     //while(playerCount < 3 && computerCount < 3){
+//         roundWinner = playRound(playerSelection, computerSelection);
+//         console.log(roundWinner)
+//         computerSelection = computerPlay(); //new computer choice
+//     //}
+//     if (playerCount > computerCount){
+//         return 'You\'ve won the game! :)';
+//     }
+//     else if(computerCount > playerCount){
+//         return 'You\'ve lost the game. :(';
+//     }
+//     else{
+//         return 'Tie game!';
+//     }
+// }
+//console.log(game(playerSelection, computerSelection));
