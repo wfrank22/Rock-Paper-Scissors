@@ -16,6 +16,10 @@ function computerPlay(){
 //compare player selection with computer selection and announce winner or tie
 function playRound(playerSelection, computerSelection){
     //compare player & computer choice
+    if(playerCount == 5 || computerCount == 5){
+        return;
+    }
+
     if (playerSelection === computerSelection){
         return 'Tie! Play again.';
     }
@@ -51,10 +55,6 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-let playerSelection;
-let computerSelection = computerPlay();
-let playerCount = 0;
-let computerCount = 0;
 
 //capitalize first letter in string
 function capitalize(a){
@@ -65,32 +65,37 @@ function capitalize(a){
     return a;
 }
 
-console.log(computerSelection);
+
+let playerSelection;
+let computerSelection = computerPlay();
+let playerCount = 0;
+let computerCount = 0;
+
+
 
 document.addEventListener('click', function(e){
-
     playerSelection = e.target.id;
     computerSelection = computerPlay();
     if(playerSelection === 'rock' || playerSelection === 'scissors' || playerSelection === 'paper'){
-        if(playerCount == 0 && computerCount == 0 && playerSelection != computerSelection){
-            console.log('Best of 5 starts now!');
-            console.log(computerSelection);
+        const announce = document.querySelector('#announce');
+        announce.textContent = playRound(playerSelection, computerSelection);
+        if(playerCount == 5){
+            announce.textContent = 'You\'ve won the game! :)';
         }
-        playRound(playerSelection, computerSelection);
-    }
-    if(playerCount == 5){
-        playerCount = 0;
-        computerCount = 0;
-        return 'You\'ve won the game! :)';
-    }
-    else if(computerCount == 5){
-        playerCount = 0;
-        computerCount = 0;
-        return 'You\'ve lost the game. :(';
+        else if(computerCount == 5){
+            announce.textContent = 'You\'ve lost the game. :(';
+        }
+
+        const counter = document.querySelector('#counter');
+        counter.textContent = 'Player: ' + playerCount + ' Computer: ' + computerCount;
     }
 })
 
-
+if(playerCount == 5 || computerCount == 5){
+    document.addEventListener('click', function(e){
+        console.log(e.target);
+    })
+}
 
 
 // function game(){
