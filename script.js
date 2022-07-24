@@ -81,9 +81,11 @@ document.addEventListener('click', function(e){
         announce.textContent = playRound(playerSelection, computerSelection);
         if(playerCount == 5){
             announce.textContent = 'You\'ve won the game! :)';
+            reset.style.visibility = 'visible';
         }
         else if(computerCount == 5){
             announce.textContent = 'You\'ve lost the game. :(';
+            reset.style.visibility = 'visible';
         }
 
         const counter = document.querySelector('#counter');
@@ -91,49 +93,15 @@ document.addEventListener('click', function(e){
     }
 })
 
-if(playerCount == 5 || computerCount == 5){
-    document.addEventListener('click', function(e){
-        console.log(e.target);
-    })
-}
 
-
-// function game(){
-//     let roundWinner = playRound(playerSelection, computerSelection)
-//     console.log(roundWinner);
-//     if(playerCount == 0 && computerCount == 0){
-//         console.log('Best of 5 starts now!');
-//     }
-//     else if(playerCount == 3){
-//         playerCount = 0;
-//         computerCount = 0;
-//         return 'You\'ve won the game! :)';
-//     }
-//     else if(computerCount == 3){
-//         playerCount = 0;
-//         computerCount = 0;
-//         return 'You\'ve lost the game. :(';
-//     }
-// }
-
-// console.log(game(selectPlayerChoice(), computerSelection));
-
-//5 rounds and select winner
-// function game(){
-//     console.log('Best of 5 starts now!')
-//     //while(playerCount < 3 && computerCount < 3){
-//         roundWinner = playRound(playerSelection, computerSelection);
-//         console.log(roundWinner)
-//         computerSelection = computerPlay(); //new computer choice
-//     //}
-//     if (playerCount > computerCount){
-//         return 'You\'ve won the game! :)';
-//     }
-//     else if(computerCount > playerCount){
-//         return 'You\'ve lost the game. :(';
-//     }
-//     else{
-//         return 'Tie game!';
-//     }
-// }
-//console.log(game(playerSelection, computerSelection));
+const reset = document.querySelector('#reset');
+reset.style.visibility = 'hidden';
+reset.addEventListener('click', () => {
+    reset.style.visibility = 'hidden';
+    if(playerCount == 5 || computerCount == 5){
+    playerCount = 0;
+    computerCount = 0;
+    announce.textContent = '';
+    counter.textContent = 'Select a choice. First to 5 wins!';
+    }
+});
